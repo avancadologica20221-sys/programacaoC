@@ -60,6 +60,5 @@
 		printf("PIB: %2.f \n", pib2);
 		printf("Numero de Pontos Turisticos: %d \n", pTuristico2);
 				
-				
-		return 0;
+		return 0;
 	}
