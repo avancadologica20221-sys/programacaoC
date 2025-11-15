@@ -8,6 +8,8 @@ int main() {
     float area1, pib1, area2, pib2;
     float densidade1, densidade2;
     float pib_percapita1, pib_percapita2;
+    float inverso_densidade1, inverso_densidade2;
+    float super_poder1, super_poder2;
 
     printf("Cadastro de Cartas \n");
 
@@ -57,40 +59,39 @@ int main() {
     printf("Quantidade de pontos turisticos: ");
     scanf("%d", &pTuristico2);
 
-
-    // --------- RESULTADOS ----------
-    printf("\n\nVeja como ficou o cadastramento\n");
-
-    printf("\nCARTA 1\n");
-    printf("Estado: %s\n", estado1);
-    printf("Codigo do estado: %s\n", codigo1);
-    printf("Nome da Cidade: %s\n", cidade1);
-    printf("Populacao: %lu\n", populacao1);
-    printf("Area: %.2f km²\n", area1);
-    printf("PIB: %.2f\n", pib1);
-    printf("Numero de pontos turísticos: %d\n", pTuristico1);
-
+    // --------- CALCULOS CARTA 1 ----------
     densidade1 = (float) populacao1 / area1;
     pib_percapita1 = (float) pib1 / populacao1;
+    inverso_densidade1 = area1 / populacao1;
+    super_poder1 = pTuristico1 + populacao1 + area1 + pib1 + inverso_densidade1 + pib_percapita1;
 
-    printf("Densidade demográfica: %.2f hab/km²\n", densidade1);
-    printf("PIB per capita: %.2f\n", pib_percapita1);
-
-
-    printf("\nCARTA 2\n");
-    printf("Estado: %s\n", estado2);
-    printf("Codigo do estado: %s\n", codigo2);
-    printf("Nome da Cidade: %s\n", cidade2);
-    printf("Populacao: %lu\n", populacao2);
-    printf("Area: %.2f km²\n", area2);
-    printf("PIB: %.2f\n", pib2);
-    printf("Numero de pontos turísticos: %d\n", pTuristico2);
-
+    // --------- CALCULOS CARTA 2 ----------
     densidade2 = (float) populacao2 / area2;
     pib_percapita2 = (float) pib2 / populacao2;
+    inverso_densidade2 = area2 / populacao2;
+    super_poder2 = pTuristico2 + populacao2 + area2 + pib2 + inverso_densidade2 + pib_percapita2;
 
-    printf("Densidade demográfica: %.2f hab/km²\n", densidade2);
-    printf("PIB per capita: %.2f\n", pib_percapita2);
+    // --------- RESULTADOS ----------
+    printf("\n\n==== RESULTADOS ====\n");
+
+    printf("\nCARTA 1\n");
+    printf("Super poder: %.2f\n", super_poder1);
+
+    printf("\nCARTA 2\n");
+    printf("Super poder: %.2f\n", super_poder2);
+
+    // Comparação
+    printf("\n===== COMPARAÇÃO FINAL =====\n");
+
+    if (super_poder1 > super_poder2) {
+        printf("A carta vencedora é a carta 1, cuja cidade é: %s! \n", cidade1, codigo1);
+    }
+    else if (super_poder2 > super_poder1) {
+        printf("A carta vencedora é a **CARTA 2** (%s - %s)!\n", cidade2, codigo2);
+    }
+    else {
+        printf("As duas cartas estão EMPATADAS!\n");
+    }
 
     return 0;
 }
